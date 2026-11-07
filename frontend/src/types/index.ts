@@ -211,3 +211,4 @@ export interface CircuitAnalysisResult {
   confidence: number;
   summary: string;
 }
+

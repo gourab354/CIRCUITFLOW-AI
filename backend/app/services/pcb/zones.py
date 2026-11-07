@@ -41,3 +41,4 @@ class CopperZoneEngine:
             circuit.zones.append(f_zone)
 
 copper_zone_service = CopperZoneEngine()
+

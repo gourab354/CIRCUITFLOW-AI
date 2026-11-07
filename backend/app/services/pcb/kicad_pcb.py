@@ -128,3 +128,4 @@ def generate_kicad_pcb_content(circuit: CircuitModel) -> str:
 
     lines.append(')')
     return "\n".join(lines)
+

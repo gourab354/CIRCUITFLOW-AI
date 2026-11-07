@@ -42,3 +42,4 @@ class ProjectUpdate(BaseModel):
     beginner_mode: Optional[bool] = None
     circuit: Optional[CircuitModel] = None
     questionnaire_answers: Optional[Dict[str, Any]] = None
+

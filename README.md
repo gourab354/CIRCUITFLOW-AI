@@ -127,3 +127,4 @@ python backend/tests/test_api_integration.py
 
 ## 📜 Quality Policy
 *CircuitFlow AI strictly enforces engineering safety: unvalidated designs or designs with active physical DRC violations are flagged as non-manufacturing ready to prevent costly board fabrication errors.*
+

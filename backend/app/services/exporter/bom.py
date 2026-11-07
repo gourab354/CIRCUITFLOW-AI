@@ -40,3 +40,4 @@ class BOMExporter:
         return output.getvalue()
 
 bom_exporter = BOMExporter()
+

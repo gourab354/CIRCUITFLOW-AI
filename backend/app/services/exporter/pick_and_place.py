@@ -26,3 +26,4 @@ class PickAndPlaceExporter:
         return output.getvalue()
 
 pick_and_place_exporter = PickAndPlaceExporter()
+

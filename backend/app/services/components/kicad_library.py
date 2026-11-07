@@ -74,3 +74,4 @@ class KiCadLibraryManager:
             return None
 
 kicad_lib_manager = KiCadLibraryManager()
+

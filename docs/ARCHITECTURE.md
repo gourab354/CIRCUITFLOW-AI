@@ -127,3 +127,4 @@ CircuitFlow AI utilizes:
 2. KiCad CLI for running official DRC checks (`kicad-cli pcb drc`).
 3. KiCad CLI for manufacturing exports (`kicad-cli pcb export gerbers`, `kicad-cli pcb export drill`, `kicad-cli pcb export glb`, `kicad-cli pcb export step`).
 4. In-memory deterministic routing and layout algorithms with full fallback when external CLI is busy or sandboxed.
+

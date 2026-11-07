@@ -173,3 +173,4 @@ def get_chat_history(project_id: str) -> List[ChatMessage]:
             question=q_obj
         ))
     return messages
+

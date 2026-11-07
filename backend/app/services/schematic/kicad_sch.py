@@ -55,3 +55,4 @@ def generate_kicad_sch_content(circuit: CircuitModel) -> str:
 
     sch_lines.append(')')
     return "\n".join(sch_lines)
+

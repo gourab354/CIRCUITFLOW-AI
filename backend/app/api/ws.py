@@ -51,3 +51,4 @@ async def websocket_endpoint(websocket: WebSocket, project_id: str):
                 pass
     except WebSocketDisconnect:
         manager.disconnect(websocket, project_id)
+

@@ -129,3 +129,4 @@ class CircuitModel(BaseModel):
     zones: List[CopperZone] = Field(default_factory=list)
     drc_violations: List[DRCViolation] = Field(default_factory=list)
     erc_violations: List[ERCViolation] = Field(default_factory=list)
+

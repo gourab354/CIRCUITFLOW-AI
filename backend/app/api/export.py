@@ -66,3 +66,4 @@ def check_export_readiness(project_id: str):
         "erc_error_count": sum(1 for v in project.circuit.erc_violations if v.severity == "error"),
         "kicad_installed": kicad_cli_exporter.is_available()
     }
+

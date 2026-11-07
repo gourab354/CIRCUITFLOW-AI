@@ -87,3 +87,4 @@ def remove_component_from_project(project_id: str, comp_ref: str):
         net.nodes = [n for n in net.nodes if n.component_ref != comp_ref]
     save_project(project)
     return {"status": "removed", "ref": comp_ref}
+

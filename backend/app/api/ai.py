@@ -123,3 +123,4 @@ def post_chat_message(project_id: str, msg: Dict[str, str]):
     )
     save_chat_message(project_id, asst_msg)
     return asst_msg
+

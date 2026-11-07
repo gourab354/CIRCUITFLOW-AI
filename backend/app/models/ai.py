@@ -49,3 +49,4 @@ class CircuitAnalysisResult(BaseModel):
 class QuestionAnswer(BaseModel):
     question_id: str
     answer: Any
+

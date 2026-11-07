@@ -297,3 +297,4 @@ def search_components(query: str) -> List[Component]:
             q in comp.footprint.lower()):
             results.append(comp.model_copy(deep=True))
     return results
+

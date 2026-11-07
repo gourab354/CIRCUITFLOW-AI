@@ -35,3 +35,4 @@ settings = Settings()
 settings.data_dir.mkdir(parents=True, exist_ok=True)
 settings.projects_dir.mkdir(parents=True, exist_ok=True)
 settings.exports_dir.mkdir(parents=True, exist_ok=True)
+

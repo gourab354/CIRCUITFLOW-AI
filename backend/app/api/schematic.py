@@ -61,3 +61,4 @@ def connect_pins(project_id: str, net_name: str, comp_a: str, pin_a: str, comp_b
 
     save_project(project)
     return {"status": "connected", "net": net}
+

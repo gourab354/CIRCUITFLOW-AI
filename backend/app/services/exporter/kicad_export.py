@@ -91,3 +91,4 @@ class KiCadCLIExporter:
             return False
 
 kicad_cli_exporter = KiCadCLIExporter()
+

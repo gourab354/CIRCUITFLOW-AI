@@ -157,6 +157,26 @@ export const api = {
   },
 
   // PCB Placement & Routing
+  async runAutoWire(projectId: string) {
+    const res = await fetch(`${API_BASE}/pcb/${projectId}/autowire`, { method: 'POST' });
+    if (!res.ok) throw new Error('Autonomous wiring and routing failed');
+    return res.json();
+  },
+
+  async routePinToPin(projectId: string, compA: string, pinA: string, compB: string, pinB: string) {
+    const params = new URLSearchParams({
+      comp_a: compA,
+      pin_a: pinA,
+      comp_b: compB,
+      pin_b: pinB
+    });
+    const res = await fetch(`${API_BASE}/pcb/${projectId}/route-pin-to-pin?${params.toString()}`, {
+      method: 'POST'
+    });
+    if (!res.ok) throw new Error('Pin-to-pin route failed');
+    return res.json();
+  },
+
   async runAutoPlace(projectId: string) {
     const res = await fetch(`${API_BASE}/pcb/${projectId}/autoplace`, { method: 'POST' });
     if (!res.ok) throw new Error('Auto placement failed');

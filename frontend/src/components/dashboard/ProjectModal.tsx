@@ -256,3 +256,4 @@ export const ProjectModal: React.FC = () => {
     </div>
   );
 };
+

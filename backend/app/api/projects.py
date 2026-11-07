@@ -82,3 +82,4 @@ def duplicate_project(project_id: str):
     new_p.id = f"proj_{uuid.uuid4().hex[:8]}"
     new_p.name = f"{p.name} (Copy)"
     return save_project(new_p)
+

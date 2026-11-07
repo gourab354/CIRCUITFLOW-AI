@@ -202,3 +202,4 @@ class SchematicGenerator:
         return "\n".join(svg)
 
 schematic_service = SchematicGenerator()
+

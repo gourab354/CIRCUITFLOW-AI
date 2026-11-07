@@ -31,3 +31,4 @@ def run_full_validation(project_id: str):
         "erc_violations": erc_issues,
         "summary": "Design is electrically sound and passes physical design rules." if error_count == 0 else f"Found {error_count} error(s) and {warning_count} warning(s) that require attention."
     }
+
