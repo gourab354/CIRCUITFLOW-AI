@@ -43,17 +43,29 @@ app.include_router(validation_router)
 app.include_router(export_router)
 app.include_router(ws_router)
 
+# Health check endpoint
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 # Mount Frontend Built Static Files if available
 dist_dir = settings.base_dir / "frontend" / "dist"
 if dist_dir.exists():
     from fastapi.responses import FileResponse
 
-    app.mount("/assets", StaticFiles(directory=str(dist_dir / "assets")), name="assets")
+    if (dist_dir / "assets").exists():
+        app.mount("/assets", StaticFiles(directory=str(dist_dir / "assets")), name="assets")
+
+    API_PREFIXES = (
+        "projects", "ai", "components", "schematic", "pcb", 
+        "validation", "export", "ws", "health", "docs", "redoc", "openapi.json"
+    )
 
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         # Don't intercept API or docs routes
-        if full_path.startswith("api") or full_path.startswith("docs") or full_path.startswith("openapi.json"):
+        first_segment = full_path.strip("/").split("/")[0] if full_path.strip("/") else ""
+        if first_segment in API_PREFIXES:
             return None
         target = dist_dir / full_path
         if target.exists() and target.is_file():
@@ -69,7 +81,3 @@ else:
             "kicad_cli": os.path.exists(settings.kicad_cli_path),
             "docs_url": "/docs"
         }
-
-@app.get("/health")
-def health_check():
-    return {"status": "ok"}

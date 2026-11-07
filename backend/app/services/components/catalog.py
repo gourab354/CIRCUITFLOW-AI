@@ -246,6 +246,125 @@ STANDARD_COMPONENTS: Dict[str, Component] = {
             Pin(number="1", name="1", type="passive", rel_x=-2.54, rel_y=0.0, pad_size_x=2.5, pad_size_y=2.5, hole_diameter=1.3),
             Pin(number="2", name="2", type="passive", rel_x=2.54, rel_y=0.0, pad_size_x=2.5, pad_size_y=2.5, hole_diameter=1.3),
         ]
+    ),
+
+    "ARDUINO_NANO": Component(
+        ref="U_MCU1",
+        name="Arduino Nano V3.0",
+        package="Module",
+        footprint="Module:Arduino_Nano",
+        value="ATmega328P",
+        category="Microcontroller",
+        description="ATmega328P 8-bit AVR Microcontroller Board with USB Mini/Type-C",
+        datasheet="https://docs.arduino.cc/resources/datasheets/A000005-datasheet.pdf",
+        width_mm=17.78,
+        height_mm=43.18,
+        specs={"voltage_nominal": 5.0, "logic_level": 5.0, "clock_mhz": 16},
+        pins=[
+            Pin(number="1", name="TX", type="output", rel_x=-7.62, rel_y=-17.78, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="2", name="RX", type="input", rel_x=-7.62, rel_y=-15.24, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="3", name="RST", type="input", rel_x=-7.62, rel_y=-12.7, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="4", name="GND", type="power_in", rel_x=-7.62, rel_y=-10.16, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="5", name="D2", type="bidirectional", rel_x=-7.62, rel_y=-7.62, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="6", name="D3", type="bidirectional", rel_x=-7.62, rel_y=-5.08, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="7", name="D4", type="bidirectional", rel_x=-7.62, rel_y=-2.54, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="8", name="D5", type="bidirectional", rel_x=-7.62, rel_y=0.0, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="9", name="D6", type="bidirectional", rel_x=-7.62, rel_y=2.54, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="10", name="D7", type="bidirectional", rel_x=-7.62, rel_y=5.08, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="11", name="D8", type="bidirectional", rel_x=-7.62, rel_y=7.62, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="12", name="D9", type="bidirectional", rel_x=-7.62, rel_y=10.16, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="13", name="D10", type="bidirectional", rel_x=-7.62, rel_y=12.7, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="14", name="D11", type="bidirectional", rel_x=-7.62, rel_y=15.24, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="15", name="D12", type="bidirectional", rel_x=-7.62, rel_y=17.78, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="16", name="D13", type="bidirectional", rel_x=7.62, rel_y=17.78, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="17", name="3V3", type="power_out", rel_x=7.62, rel_y=15.24, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="18", name="AREF", type="input", rel_x=7.62, rel_y=12.7, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="19", name="A0", type="input", rel_x=7.62, rel_y=10.16, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="20", name="A1", type="input", rel_x=7.62, rel_y=7.62, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="21", name="A2", type="input", rel_x=7.62, rel_y=5.08, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="22", name="A3", type="input", rel_x=7.62, rel_y=2.54, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="23", name="A4/SDA", type="bidirectional", rel_x=7.62, rel_y=0.0, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="24", name="A5/SCL", type="bidirectional", rel_x=7.62, rel_y=-2.54, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="25", name="A6", type="input", rel_x=7.62, rel_y=-5.08, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="26", name="A7", type="input", rel_x=7.62, rel_y=-7.62, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="27", name="5V", type="power_out", rel_x=7.62, rel_y=-10.16, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="28", name="RST", type="input", rel_x=7.62, rel_y=-12.7, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="29", name="GND", type="power_in", rel_x=7.62, rel_y=-15.24, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="30", name="VIN", type="power_in", rel_x=7.62, rel_y=-17.78, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+        ]
+    ),
+
+    "BME280": Component(
+        ref="U_ENV1",
+        name="BME280 Environmental Sensor",
+        package="Module",
+        footprint="Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering",
+        value="BME280",
+        category="Sensor",
+        description="Combined humidity, pressure and temperature sensor with digital I2C/SPI",
+        datasheet="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+        width_mm=11.5,
+        height_mm=15.0,
+        specs={"voltage_min": 1.71, "voltage_max": 3.6, "voltage_nominal": 3.3, "interface": "I2C"},
+        pins=[
+            Pin(number="1", name="VCC", type="power_in", rel_x=-3.81, rel_y=-6.0, pad_size_x=1.6, pad_size_y=1.6, hole_diameter=0.9),
+            Pin(number="2", name="GND", type="power_in", rel_x=-1.27, rel_y=-6.0, pad_size_x=1.6, pad_size_y=1.6, hole_diameter=0.9),
+            Pin(number="3", name="SCL", type="input", rel_x=1.27, rel_y=-6.0, pad_size_x=1.6, pad_size_y=1.6, hole_diameter=0.9),
+            Pin(number="4", name="SDA", type="bidirectional", rel_x=3.81, rel_y=-6.0, pad_size_x=1.6, pad_size_y=1.6, hole_diameter=0.9),
+        ]
+    ),
+
+    "HC_SR04": Component(
+        ref="U_SONAR1",
+        name="HC-SR04 Ultrasonic Distance Sensor",
+        package="Module",
+        footprint="Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+        value="HC-SR04",
+        category="Sensor",
+        description="Ultrasonic ranging module with 2cm-400cm non-contact measurement",
+        width_mm=45.0,
+        height_mm=20.0,
+        specs={"voltage_nominal": 5.0, "working_current_ma": 15},
+        pins=[
+            Pin(number="1", name="VCC", type="power_in", rel_x=-3.81, rel_y=-8.0, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="2", name="TRIG", type="input", rel_x=-1.27, rel_y=-8.0, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="3", name="ECHO", type="output", rel_x=1.27, rel_y=-8.0, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+            Pin(number="4", name="GND", type="power_in", rel_x=3.81, rel_y=-8.0, pad_size_x=1.7, pad_size_y=1.7, hole_diameter=1.0),
+        ]
+    ),
+
+    "MOSFET_2N7002": Component(
+        ref="Q1",
+        name="2N7002 N-Channel MOSFET",
+        package="SOT-23",
+        footprint="Package_TO_SOT_SMD:SOT-23",
+        value="60V 115mA",
+        category="Discrete",
+        description="Small Signal N-Channel Field-Effect Transistor",
+        width_mm=2.9,
+        height_mm=2.4,
+        specs={"vds_max": 60, "id_max": 0.115},
+        pins=[
+            Pin(number="1", name="G", type="input", rel_x=-0.95, rel_y=-1.0, pad_size_x=0.8, pad_size_y=1.0),
+            Pin(number="2", name="S", type="passive", rel_x=0.95, rel_y=-1.0, pad_size_x=0.8, pad_size_y=1.0),
+            Pin(number="3", name="D", type="passive", rel_x=0.0, rel_y=1.0, pad_size_x=0.8, pad_size_y=1.0),
+        ]
+    ),
+
+    "DIODE_1N4007": Component(
+        ref="D_REC1",
+        name="1N4007 Rectifier Diode",
+        package="DO-41",
+        footprint="Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal",
+        value="1A 1000V",
+        category="Discrete",
+        description="Standard 1A 1000V Silicon Rectifier Diode",
+        width_mm=10.16,
+        height_mm=3.0,
+        pins=[
+            Pin(number="1", name="K", type="passive", rel_x=-5.08, rel_y=0.0, pad_size_x=1.8, pad_size_y=1.8, hole_diameter=1.0),
+            Pin(number="2", name="A", type="passive", rel_x=5.08, rel_y=0.0, pad_size_x=1.8, pad_size_y=1.8, hole_diameter=1.0),
+        ]
     )
 }
 
@@ -257,6 +376,16 @@ def get_component_definition(name_or_alias: str) -> Optional[Component]:
             return comp.model_copy(deep=True)
             
     # Fuzzy / alias matching
+    if "ARDUINO" in key or "NANO" in key or "ATMEGA" in key:
+        return STANDARD_COMPONENTS["ARDUINO_NANO"].model_copy(deep=True)
+    if "BME280" in key or "BMP280" in key or "PRESSURE" in key or "HUMIDITY" in key:
+        return STANDARD_COMPONENTS["BME280"].model_copy(deep=True)
+    if "HC-SR04" in key or "HCSR04" in key or "ULTRASONIC" in key or "SONAR" in key:
+        return STANDARD_COMPONENTS["HC_SR04"].model_copy(deep=True)
+    if "MOSFET" in key or "2N7002" in key or "TRANSISTOR" in key:
+        return STANDARD_COMPONENTS["MOSFET_2N7002"].model_copy(deep=True)
+    if "1N4007" in key or "RECTIFIER" in key or "DIODE" in key:
+        return STANDARD_COMPONENTS["DIODE_1N4007"].model_copy(deep=True)
     if "ESP32" in key:
         return STANDARD_COMPONENTS["ESP32-WROOM-32"].model_copy(deep=True)
     if "MPU" in key or "6050" in key or "GYRO" in key or "ACCEL" in key:

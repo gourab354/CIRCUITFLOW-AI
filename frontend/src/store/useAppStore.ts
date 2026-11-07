@@ -22,7 +22,7 @@ interface AppState {
   consoleLogs: LogItem[];
   isProcessing: boolean;
   processingStatus: string;
-  
+
   // Actions
   setProject: (project: Project | null) => void;
   setActiveTab: (tab: AppState['activeTab']) => void;
@@ -35,7 +35,7 @@ interface AppState {
   setActiveBottomTab: (tab: AppState['activeBottomTab']) => void;
   addLog: (text: string, type?: LogItem['type']) => void;
   setProcessing: (isProcessing: boolean, status?: string) => void;
-  
+
   // High-level Project Operations
   loadProject: (id: string) => Promise<void>;
   refreshCurrentProject: () => Promise<void>;
@@ -90,7 +90,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   setSelectedComponentRef: (ref) => set({ selectedComponentRef: ref }),
   setSelectedNet: (net) => set({ selectedNet: net }),
   setActiveLayer: (layer) => set({ activeLayer: layer }),
-  
+
   toggleLayerVisibility: (layer) => set((state) => ({
     visibleLayers: {
       ...state.visibleLayers,
@@ -102,7 +102,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ beginnerMode: enabled });
     const { currentProject } = get();
     if (currentProject) {
-      api.updateProject(currentProject.id, { beginner_mode: enabled }).catch(() => {});
+      api.updateProject(currentProject.id, { beginner_mode: enabled }).catch(() => { });
     }
   },
 
