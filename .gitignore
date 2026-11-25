@@ -21,6 +21,7 @@ data/circuitflow.db-journal
 dist/
 build/
 *.egg-info/
+*.exe
 
 # Logs
 npm-debug.log*

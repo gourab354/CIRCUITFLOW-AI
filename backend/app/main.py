@@ -12,6 +12,7 @@ from backend.app.api.pcb import router as pcb_router
 from backend.app.api.validation import router as validation_router
 from backend.app.api.export import router as export_router
 from backend.app.api.ws import router as ws_router
+from backend.app.api.ai_settings import router as ai_settings_router
 
 app = FastAPI(
     title=settings.app_name,
@@ -42,6 +43,7 @@ app.include_router(pcb_router)
 app.include_router(validation_router)
 app.include_router(export_router)
 app.include_router(ws_router)
+app.include_router(ai_settings_router)
 
 # Health check endpoint
 @app.get("/health")
