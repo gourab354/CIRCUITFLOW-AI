@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Cpu, CheckCircle2, Download, Settings, Play,
   RefreshCw, Layers, ChevronDown, Sparkles, Zap,
-  Menu, Bell, HelpCircle
+  Menu, Bell, HelpCircle, User as UserIcon, LogOut
 } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 import { useAISettingsStore } from '../../store/useAISettingsStore';
+import { useAuthStore } from '../../store/useAuthStore';
 import { api } from '../../services/api';
 
 const PROVIDER_COLORS: Record<string, string> = {
@@ -52,8 +53,15 @@ export const Header: React.FC = () => {
     loadModels,
   } = useAISettingsStore();
 
+  const {
+    user, isAuthenticated, setShowAuthModal, logout, checkAuth
+  } = useAuthStore();
+
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
   useEffect(() => {
     loadModels();
+    checkAuth();
   }, []);
 
   const provider = activeModel?.provider || 'rule_based';
@@ -225,6 +233,48 @@ export const Header: React.FC = () => {
             </button>
           </div>
         )}
+
+        {/* User Account / Sign In */}
+        <div className="relative pl-2 border-l border-white/[0.07]">
+          {isAuthenticated && user ? (
+            <div className="relative">
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="flex items-center gap-2 p-1 pl-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all"
+              >
+                <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-[11px] font-bold text-white shadow-sm">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+                <span className="text-xs text-slate-200 font-medium max-w-[100px] truncate">{user.name}</span>
+                <ChevronDown className="w-3 h-3 text-slate-500 mr-1" />
+              </button>
+
+              {showUserMenu && (
+                <div className="absolute right-0 top-full mt-2 w-52 bg-[#0c1220] border border-white/10 rounded-xl shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-100">
+                  <div className="p-2 border-b border-white/[0.06] mb-1">
+                    <p className="text-xs font-semibold text-white truncate">{user.name}</p>
+                    <p className="text-[10px] text-slate-400 truncate">{user.email}</p>
+                  </div>
+                  <button
+                    onClick={() => { logout(); setShowUserMenu(false); }}
+                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-red-400 hover:bg-red-500/10 transition-colors"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span>Sign Out</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <button
+              onClick={() => setShowAuthModal(true, 'login')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] text-slate-200 hover:text-white border border-white/[0.1] text-xs font-medium transition-all"
+            >
+              <UserIcon className="w-3.5 h-3.5 text-blue-400" />
+              <span>Sign In</span>
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );

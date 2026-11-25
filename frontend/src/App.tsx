@@ -7,6 +7,7 @@ import { BottomPanel } from './components/layout/BottomPanel';
 import { ProjectModal } from './components/dashboard/ProjectModal';
 import { AIAssistantView } from './components/ai/AIAssistantView';
 import { AIModelPicker } from './components/ai/AIModelPicker';
+import { AuthModal } from './components/auth/AuthModal';
 import { ComponentListView } from './components/components/ComponentListView';
 import { SchematicEditor } from './components/schematic/SchematicEditor';
 import { PCBEditor } from './components/pcb/PCBEditor';
@@ -26,6 +27,9 @@ export const App: React.FC = () => {
 
       {/* AI Model Picker + API Key modals — rendered at root so they overlay everything */}
       <AIModelPicker />
+
+      {/* User Sign In & Sign Up Modal */}
+      <AuthModal />
 
       {/* Main Workspace */}
       <div className="flex flex-1 overflow-hidden">

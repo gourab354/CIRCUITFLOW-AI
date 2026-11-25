@@ -1,5 +1,9 @@
 import sqlite3
 import json
+import hashlib
+import secrets
+import uuid
+from datetime import datetime
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 from backend.app.config import settings
@@ -46,6 +50,20 @@ def init_db():
         """)
         conn.execute("""
             CREATE INDEX IF NOT EXISTS idx_chat_project_id ON chat_messages(project_id)
+        """)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS users (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                email TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                avatar TEXT DEFAULT '',
+                created_at TEXT NOT NULL,
+                last_login TEXT NOT NULL
+            )
+        """)
+        conn.execute("""
+            CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)
         """)
     conn.close()
 
@@ -173,4 +191,89 @@ def get_chat_history(project_id: str) -> List[ChatMessage]:
             question=q_obj
         ))
     return messages
+
+# --- User Authentication Helpers ---
+
+def _hash_password(password: str, salt: str = "") -> str:
+    if not salt:
+        salt = secrets.token_hex(16)
+    hashed = hashlib.sha256((password + salt).encode("utf-8")).hexdigest()
+    return f"{salt}${hashed}"
+
+def _verify_password(password: str, stored_hash: str) -> bool:
+    if "$" not in stored_hash:
+        return False
+    salt, expected_hash = stored_hash.split("$", 1)
+    actual_hash = hashlib.sha256((password + salt).encode("utf-8")).hexdigest()
+    return secrets.compare_digest(actual_hash, expected_hash)
+
+def create_user(name: str, email: str, password: str) -> Dict[str, Any]:
+    conn = get_connection()
+    email_clean = email.strip().lower()
+    existing = conn.execute("SELECT id FROM users WHERE email = ?", (email_clean,)).fetchone()
+    if existing:
+        conn.close()
+        raise ValueError("An account with this email already exists.")
+
+    user_id = f"user_{uuid.uuid4().hex[:12]}"
+    now = datetime.utcnow().isoformat()
+    pw_hash = _hash_password(password)
+    
+    with conn:
+        conn.execute("""
+            INSERT INTO users (id, name, email, password_hash, avatar, created_at, last_login)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (user_id, name.strip(), email_clean, pw_hash, "", now, now))
+    conn.close()
+    
+    return {
+        "id": user_id,
+        "name": name.strip(),
+        "email": email_clean,
+        "avatar": "",
+        "created_at": now
+    }
+
+def authenticate_user(email: str, password: str) -> Optional[Dict[str, Any]]:
+    conn = get_connection()
+    email_clean = email.strip().lower()
+    row = conn.execute("SELECT * FROM users WHERE email = ?", (email_clean,)).fetchone()
+    if not row:
+        conn.close()
+        return None
+
+    if not _verify_password(password, row["password_hash"]):
+        conn.close()
+        return None
+
+    now = datetime.utcnow().isoformat()
+    with conn:
+        conn.execute("UPDATE users SET last_login = ? WHERE id = ?", (now, row["id"]))
+    conn.close()
+
+    return {
+        "id": row["id"],
+        "name": row["name"],
+        "email": row["email"],
+        "avatar": row["avatar"] or "",
+        "created_at": row["created_at"],
+        "last_login": now
+    }
+
+def get_user_by_id(user_id: str) -> Optional[Dict[str, Any]]:
+    conn = get_connection()
+    row = conn.execute("SELECT id, name, email, avatar, created_at, last_login FROM users WHERE id = ?", (user_id,)).fetchone()
+    conn.close()
+    if not row:
+        return None
+    return dict(row)
+
+def get_user_by_email(email: str) -> Optional[Dict[str, Any]]:
+    conn = get_connection()
+    row = conn.execute("SELECT id, name, email, avatar, created_at, last_login FROM users WHERE email = ?", (email.strip().lower(),)).fetchone()
+    conn.close()
+    if not row:
+        return None
+    return dict(row)
+
 

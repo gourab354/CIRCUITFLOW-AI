@@ -13,6 +13,7 @@ from backend.app.api.validation import router as validation_router
 from backend.app.api.export import router as export_router
 from backend.app.api.ws import router as ws_router
 from backend.app.api.ai_settings import router as ai_settings_router
+from backend.app.api.auth import router as auth_router
 
 app = FastAPI(
     title=settings.app_name,
@@ -44,6 +45,7 @@ app.include_router(validation_router)
 app.include_router(export_router)
 app.include_router(ws_router)
 app.include_router(ai_settings_router)
+app.include_router(auth_router)
 
 # Health check endpoint
 @app.get("/health")
@@ -60,7 +62,7 @@ if dist_dir.exists():
 
     API_PREFIXES = (
         "projects", "ai", "components", "schematic", "pcb", 
-        "validation", "export", "ws", "health", "docs", "redoc", "openapi.json"
+        "validation", "export", "ws", "health", "docs", "redoc", "openapi.json", "auth", "ai-settings"
     )
 
     @app.get("/{full_path:path}")
